@@ -13,7 +13,7 @@ def main():
 
     while choice != "":
         if choice.lower() == 'q' :
-            all = input("전체를 조회하시려면 (a), 검색하시려면 (s), 끝내려면 엔터를 눌러주세요 : ")
+            all = input("전체를 조회하시려면 (a), 검색하시려면 (s), 끝내려면 엔터를 눌러주세요 : ") # 전체조회 부분 
             if all.lower() == 's' :
                 check(dic)
             elif all.lower() == 'a' :
