@@ -1,7 +1,7 @@
 from csv import reader, writer
 
 def main():
-    infile = open("example.csv")
+    infile = open("example.csv", "r")
     csvReader = reader(infile)
    
     dic = {}
@@ -13,7 +13,15 @@ def main():
 
     while choice != "":
         if choice.lower() == 'q' :
-            check(dic)
+            all = input("전체를 조회하시려면 (a), 검색하시려면 (s), 끝내려면 엔터를 눌러주세요 : ")
+            if all.lower() == 's' :
+                check(dic)
+            elif all.lower() == 'a' :
+                for key in dic :
+                    print("%s은(는) %d상자 있습니다." % (key, dic[key]))
+            else :
+                print("없는 기능입니다. 다시 입력해주세요")
+
         elif choice.lower() == 'a' :
             plus(dic)
         elif choice.lower() == 'm' :
@@ -34,7 +42,6 @@ def main():
 
     outfile.close()
 
-
 def check(dic) :
     first = input("과일이름을 입력하세요, 끝내려면 엔터: ") 
     fruit = first.lower() 
@@ -48,8 +55,7 @@ def check(dic) :
         first = input("과일이름을 입력하세요, 끝내려면 엔터: ")
         fruit = first.lower()
     return dic
-
-        
+     
 def plus(dic) :
     first = input("과일이름을 입력하세요, 끝내려면 엔터: ")
     fruit = first.lower()
@@ -58,13 +64,16 @@ def plus(dic) :
         if fruit in dic :
             print("%s은(는) %d상자 있습니다." % (fruit, dic[fruit]))
             apple = input("추가할 수량을 입력하세요 :")
+            
             if int(apple) > 0:
                 dic[fruit] = dic[fruit] + int(apple)
                 print("%s은(는) %d상자 있습니다." % (fruit, dic[fruit]))
+                
             else :
                 print("양수로 입력해주세요")
         else :
             option = input("없는 과일입니다. 추가하시려면 'y'를 눌러주세요 : ")
+            
             if option.upper() == 'Y' :
                 append = input("추가 하려고하는 과일의 수량을 입력하세요. : ")
                 dic[fruit] = int(append)
@@ -72,7 +81,9 @@ def plus(dic) :
                 
         first = input("과일이름을 입력하세요, 끝내려면 엔터: ")
         fruit = first.lower()
+        
     return dic
+    
 def minus(dic) :
     first = input("과일이름을 입력하세요, 끝내려면 엔터: ")
     fruit = first.lower()
@@ -106,6 +117,7 @@ def delete(dic):
         if fruit in dic:
             dic.pop(fruit)
             print("%s는 삭제되었습니다." % fruit)
+            
         first = input("제거할 과일 이름을 입력하세요, 끝내려면 엔터: ")
         fruit = first.lower()
     
